@@ -18,18 +18,20 @@ class EliorRestaurantParser extends Parser {
     return this
   }
 
-  private void process(GPathResult result) {
-    def rawText  = result.body.div[0].div[0].p[1].toString()
+  private void process(GPathResult gpath) {
+    def rawText  = gpath.body.div[0].div[0].p[1].toString()
     def lines    = rawText.split('\n').findAll { it.trim() }
     def sections = lines.collate(5)
 
+    result.meta.expiration = lines[lines.size() - 1]
+
     5.times {
       int dayIndex = -1
-      add('monday', sections[it][++dayIndex])
-      add('tuesday', sections[it][++dayIndex])
-      add('wednesday', sections[it][++dayIndex])
-      add('thursday', sections[it][++dayIndex])
-      add('friday', sections[it][++dayIndex])
+      result.days.monday    << sections[it][++dayIndex]
+      result.days.tuesday   << sections[it][++dayIndex]
+      result.days.wednesday << sections[it][++dayIndex]
+      result.days.thursday  << sections[it][++dayIndex]
+      result.days.friday    << sections[it][++dayIndex]
     }
   }
 }

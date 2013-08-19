@@ -4,31 +4,23 @@ import groovy.json.JsonOutput
 
 abstract class Parser {
 
-  private final Map result = [
-      monday    : [],
-      tuesday   : [],
-      wednesday : [],
-      thursday  : [],
-      friday    : [],
-      saturday  : [],
-      sunday    : [],
+  final Map result = [
+      meta : [:],
+      days : [
+        monday    : [],
+        tuesday   : [],
+        wednesday : [],
+        thursday  : [],
+        friday    : [],
+        saturday  : [],
+        sunday    : []
+      ]
   ]
 
   protected abstract Parser parse(InputStream input)
 
-  protected add(dayOfWeek, value) {
-    this.@result[dayOfWeek] << value
-  }
-
-  Map getResult() {
-    this.@result.inject([:]) { Map map, entry ->
-      map.put(entry.key, entry.value.asImmutable())
-      return map
-    }.asImmutable()
-  }
-
   String getResultAsJson() {
-    def json = JsonOutput.toJson(getResult())
+    def json = JsonOutput.toJson(result)
     JsonOutput.prettyPrint(json)
   }
 
