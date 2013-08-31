@@ -47,4 +47,45 @@ class EliorRestaurantParserTest extends GroovyTestCase {
     assert result.days.friday[3] == 'Gnocchi aux fèves'
     assert result.days.friday[4] == '-'
   }
+
+  void test_should_parse_week_menu_using_new_office_parser() {
+    def result = parse('02')
+
+    assert result.meta.lastCheck
+
+    assert result.days.monday.size() == 5
+    assert result.days.monday[0] == 'Paupiette de bœuf maïs poivrons'
+    assert result.days.monday[1] == 'Colombo de porc'
+    assert result.days.monday[2] == 'Filet de colin sauce vierge'
+    assert result.days.monday[3] == 'Quiche à l’emmenthal'
+    assert result.days.monday[4] == 'Pizza  tomates mozzarella'
+
+    assert result.days.tuesday.size() == 5
+    assert result.days.tuesday[0] == 'Saucisse de toulouse  aux oignons'
+    assert result.days.tuesday[1] == 'Hauts de cuisses de poulet'
+    assert result.days.tuesday[2] == 'Filet de merlu bouton d’or'
+    assert result.days.tuesday[3] == 'Curry aux légumes'
+    assert result.days.tuesday[4] == 'Pizza  légumes grillés'
+
+    assert result.days.wednesday.size() == 5
+    assert result.days.wednesday[0] == 'Omelette  aux pommes de terre'
+    assert result.days.wednesday[1] == 'Jambon braisé au porto'
+    assert result.days.wednesday[2] == 'Filet de hoki pousses d’épinards'
+    assert result.days.wednesday[3] == 'Tortellini basilic épinards'
+    assert result.days.wednesday[4] == 'Pizza  pepperoni'
+
+    assert result.days.thursday.size() == 5
+    assert result.days.thursday[0] == 'Emincé de poulet au paprika'
+    assert result.days.thursday[1] == 'Mignon de porc au caramel'
+    assert result.days.thursday[2] == 'Filet de cabillaud  au beurre blanc'
+    assert result.days.thursday[3] == 'Tarte  aux oignons reblochon'
+    assert result.days.thursday[4] == 'Pizza angélica'
+
+    assert result.days.friday.size() == 5
+    assert result.days.friday[0] == 'Steak haché de veau'
+    assert result.days.friday[1] == 'Spaghetti bolognaise'
+    assert result.days.friday[2] == 'Filet de saumon frais'
+    assert result.days.friday[3] == 'Clafoutis de légumes au chèvre'
+    assert result.days.friday[4] == 'Pizza poulet curry'
+  }
 }
