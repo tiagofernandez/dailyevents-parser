@@ -50,14 +50,14 @@ abstract class Parser {
     new SimpleDateFormat('dd/MM/yyyy HH:mm').format(new Date())
   }
 
-  /**
-   * @param args [0]: target parser, e.g. "EliorRestaurant"
-   *             [1]: input URL, e.g. "http://restaurant.nce.amadeus.net/menu/menu.ppt"
-   *             [2]: output path, e.g. "/Users/Tiago/Dropbox/Public/EliorRestaurant.json"
-   */
   static void main(String... args) {
     if (args.size() != 3) {
-      println 'Target parser, input URL and output path are required'
+      println '''
+Usage:
+  [0]: target parser, e.g. "EliorRestaurant" or "com.acme.AwesomeParser"
+  [1]: input URL, e.g. "http://restaurant.nce.amadeus.net/menu/menu.ppt" or "file://..."
+  [2]: output path, e.g. "/tmp/EliorRestaurant.json"
+'''
     }
     else {
       println "Processing ${args[1]}..."
