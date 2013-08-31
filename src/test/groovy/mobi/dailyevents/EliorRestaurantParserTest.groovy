@@ -2,10 +2,10 @@ package mobi.dailyevents
 
 class EliorRestaurantParserTest extends GroovyTestCase {
 
-  final input = { this.class.getResourceAsStream('/EliorRestaurant/menu.ppt') }
-
   void test_should_parse_week_menu() {
-    def result = new EliorRestaurantParser().parse(input()).result
+
+    final url = this.class.getResource('/EliorRestaurant/menu.ppt')
+    def result = new EliorRestaurantParser().parse(url).result
 
     assert result.meta.expiration == '16/08'
 
