@@ -1,17 +1,15 @@
 package mobi.dailyevents
 
-import groovy.util.slurpersupport.GPathResult
-
 class EliorRestaurantParser extends Parser {
 
   Parser parse(URL url) {
-    GPathResult gpath = parseOffice(url)
+    String content = parseOffice(url)
 
-    def rawText  = gpath.body.div[0].div[0].p[1].toString()
-    def lines    = rawText.split('\n').findAll { it.trim() }
-    def sections = lines.collate(5)
+    List sections = content.split('\n').flatten().findAll {
+      it.trim() && !it.startsWith('Diapositive')
+    }.collect { it.trim() }.collate(5)
 
-    result.meta.expiration = lines[lines.size() - 1]
+    result.meta.lastCheck = currentDateAsString()
 
     5.times {
       int dayIndex = -1
