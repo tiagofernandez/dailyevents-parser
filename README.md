@@ -1,8 +1,5 @@
-# Daily Events Parser
+Daily Events Parser
+===================
 
-Daily Events Parser is an utility application for downloading content from
-supported providers, parsing useful data, and transforming it to JSON.
+Utility application for downloading content from supported providers.
 
-## Author
-
-[Tiago Fernandez](http://tiagofernandez.com) (2013)
